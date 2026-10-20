@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars locally and keep that file out of version control.
+# Choose a region and non-overlapping private network ranges for your environment.
+location              = "eastus"
+vnet_address_space    = "10.20.0.0/16"
+subnet_address_prefix = "10.20.1.0/24"
+
+# Supply credentials through environment variables instead of this file:
+# PowerShell:
+#   $env:TF_VAR_admin_username = "your-admin-username"
+#   $env:TF_VAR_admin_password = "use-a-unique-strong-password"
+#
+# Bash:
+#   export TF_VAR_admin_username='your-admin-username'
+#   export TF_VAR_admin_password='use-a-unique-strong-password'
