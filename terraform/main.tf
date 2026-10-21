@@ -52,12 +52,14 @@ resource "azurerm_subnet_network_security_group_association" "identity" {
 locals {
   virtual_machines = {
     directory = {
-      name         = var.directory_vm_name
-      private_host = 4
+      name          = var.directory_vm_name
+      computer_name = "ADDS01"
+      private_host  = 4
     }
     sync = {
-      name         = var.sync_vm_name
-      private_host = 5
+      name          = var.sync_vm_name
+      computer_name = "ENTRASYN01"
+      private_host  = 5
     }
   }
 }
@@ -83,7 +85,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
   for_each = local.virtual_machines
 
   name                = each.value.name
-  computer_name       = each.value.name
+  computer_name       = each.value.computer_name
   location            = azurerm_resource_group.identity.location
   resource_group_name = azurerm_resource_group.identity.name
   size                = var.vm_size
